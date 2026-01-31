@@ -52,7 +52,7 @@ rag-financial-assistant/
 
 Clone the repository:
 
-git clone https://github.com/your-username/rag-financial-assistant.git  
+git clone https://github.com/surajchaudhary26/rag-financial-assistant.git
 cd rag-financial-assistant
 
 Create and activate a virtual environment:
