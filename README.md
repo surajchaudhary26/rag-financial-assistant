@@ -31,7 +31,7 @@ rag-financial-assistant/
 │   ├── indexing/           # Chunking, embeddings, vector store creation
 │   ├── retrieval/          # Semantic retriever
 │   ├── llm/                # LLM answer generation
-│   ├── ragpipeline/        # RAG orchestration logic
+│   ├── pipeline/           # RAG orchestration logic
 │   ├── app/                # CLI chat application
 │   ├── prompts/            # System prompt
 │   └── utils/              # Logging utilities
