@@ -15,3 +15,4 @@ logs/
 
 # Vector DB storage
 embeddings/vector_store/
+src/debug/
