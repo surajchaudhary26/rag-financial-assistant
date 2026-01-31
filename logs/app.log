@@ -1,0 +1,3 @@
+2026-01-31 13:10:24 | INFO | rag_app | Logger is working
+2026-01-31 13:10:24 | WARNING | rag_app | Test warning
+2026-01-31 13:10:24 | ERROR | rag_app | Test error
