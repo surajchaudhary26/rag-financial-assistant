@@ -1,0 +1,224 @@
+PROJECT TITLE:
+AI-Powered Conversational Financial Assistant (RAG-based)
+
+==================================================
+1. PROJECT OVERVIEW
+==================================================
+
+This project aims to build a conversational AI system that answers
+financial questions using document-based knowledge.
+
+The system uses:
+- RAG (Retrieval Augmented Generation) for factual accuracy
+- An LLM for natural language generation
+- A vector database for semantic search
+
+The assistant is designed for educational purposes and avoids
+direct investment advice.
+
+==================================================
+2. HIGH-LEVEL OBJECTIVE
+==================================================
+
+- Accept user questions via a chat interface
+- Retrieve relevant information from financial documents
+- Generate safe, structured, and consistent answers
+- Reduce hallucinations using document grounding
+
+==================================================
+3. SYSTEM ARCHITECTURE OVERVIEW
+==================================================
+
+The system is divided into two major phases:
+
+1) Offline / One-time Processing
+2) Online / Runtime Query Handling
+
+--------------------------------------------------
+PHASE 1: OFFLINE DOCUMENT PROCESSING
+--------------------------------------------------
+
+This phase prepares documents for retrieval.
+It runs once or whenever documents change.
+
+--------------------------------------------------
+Module 1: Document Ingestion
+--------------------------------------------------
+Purpose:
+- Load financial documents into the system
+
+Input:
+- PDF / TXT / Markdown files
+
+Responsibilities:
+- Read document content
+- Convert documents into raw text
+
+--------------------------------------------------
+Module 2: Text Chunking
+--------------------------------------------------
+Purpose:
+- Break large documents into small, meaningful chunks
+
+Responsibilities:
+- Split text into logical sections
+- Ensure each chunk represents one idea
+- Maintain overlap if needed for context continuity
+
+Output:
+- List of text chunks
+
+--------------------------------------------------
+Module 3: Embedding Generation
+--------------------------------------------------
+Purpose:
+- Convert text chunks into numerical vectors
+
+Responsibilities:
+- Use an embedding model to generate embeddings
+- Ensure the same model is used for queries and documents
+
+Output:
+- Vector representations of text chunks
+
+--------------------------------------------------
+Module 4: Vector Database Storage
+--------------------------------------------------
+Purpose:
+- Store embeddings for fast semantic search
+
+Responsibilities:
+- Save embeddings with metadata (chunk text, source)
+- Enable similarity-based retrieval
+
+Output:
+- A searchable vector database
+
+--------------------------------------------------
+PHASE 2: ONLINE QUERY PROCESSING
+--------------------------------------------------
+
+This phase runs every time a user asks a question.
+
+--------------------------------------------------
+Module 5: User Input Handler
+--------------------------------------------------
+Purpose:
+- Accept user questions
+
+Responsibilities:
+- Receive input from CLI / UI
+- Validate and sanitize user input
+
+--------------------------------------------------
+Module 6: Query Embedding
+--------------------------------------------------
+Purpose:
+- Convert user question into an embedding
+
+Responsibilities:
+- Use the same embedding model as document chunks
+
+--------------------------------------------------
+Module 7: Retrieval (RAG Core)
+--------------------------------------------------
+Purpose:
+- Find the most relevant document chunks
+
+Responsibilities:
+- Perform similarity search in vector database
+- Retrieve top-k relevant chunks
+- Filter irrelevant content
+
+Output:
+- Contextual document snippets
+
+--------------------------------------------------
+Module 8: Prompt & Context Builder
+--------------------------------------------------
+Purpose:
+- Prepare final input for the LLM
+
+Components:
+- System prompt (role, safety rules, tone)
+- Retrieved document context
+- User question
+
+Responsibilities:
+- Enforce safety constraints
+- Control output format
+- Maintain consistency
+
+--------------------------------------------------
+Module 9: LLM Response Generation
+--------------------------------------------------
+Purpose:
+- Generate the final answer
+
+Responsibilities:
+- Read provided context
+- Follow system instructions
+- Generate natural language response
+- Avoid hallucination and direct advice
+
+--------------------------------------------------
+Module 10: Response Delivery
+--------------------------------------------------
+Purpose:
+- Send final answer back to the user
+
+Responsibilities:
+- Display answer in chat format
+- Ensure readability and structure
+
+==================================================
+4. TECHNOLOGY STACK (FREE)
+==================================================
+
+- LLM: Open-source instruction-tuned model (Mistral / LLaMA)
+- Embeddings: Sentence-Transformers
+- Vector Database: ChromaDB or FAISS
+- RAG Framework: LangChain
+- Interface: Command-line or Streamlit
+
+==================================================
+5. DESIGN PRINCIPLES
+==================================================
+
+- Separation of concerns (each module has one responsibility)
+- RAG for factual accuracy
+- LLM only for language generation
+- Prompting first, fine-tuning optional
+- Simple, explainable architecture
+
+==================================================
+6. SCOPE LIMITATIONS
+==================================================
+
+Explicitly NOT included:
+- Real investment recommendations
+- Trading execution
+- User authentication
+- Cloud deployment
+- Real-time market data
+
+==================================================
+7. SUCCESS CRITERIA
+==================================================
+
+- Answers are grounded in documents
+- Responses are consistent and safe
+- Same question produces structured output
+- Hallucination is minimized
+- System is easy to explain end-to-end
+
+==================================================
+8. INTERVIEW-READY ONE-LINE SUMMARY
+==================================================
+
+"I built a RAG-based conversational AI that retrieves document-grounded
+financial information and uses an LLM to generate safe, structured responses."
+
+==================================================
+END OF FILE
+==================================================
