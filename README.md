@@ -1,160 +1,121 @@
-# 📊 RAG Financial Assistant
+# RAG Financial Assistant
 
-A Retrieval-Augmented Generation (RAG) based financial assistant that answers user queries strictly grounded in uploaded documents (PDFs).  
-The system is designed with **hallucination control, safety, and modular architecture**, making it suitable for interviews, portfolios, and real-world financial use cases.
+A Retrieval-Augmented Generation (RAG) based financial assistant that answers user queries strictly from provided financial documents (PDFs). The system is designed to avoid hallucinations, follow safety constraints, and demonstrate real-world LLM engineering practices suitable for interviews and production-style projects.
 
----
+## Overview
 
-## 🚀 Key Features
+This project implements an end-to-end RAG pipeline that ingests financial documents, stores semantic embeddings in a vector database, retrieves relevant context for a user query, and uses a large language model to generate grounded and safe answers. The assistant focuses on educational responses and avoids providing personalized financial advice.
 
-- 📄 PDF document ingestion
-- ✂️ Text chunking with overlap
-- 🧠 Embedding generation using HuggingFace models
-- 🗄️ Persistent vector storage using ChromaDB
-- 🔍 Semantic retrieval (top-k similarity search)
-- 🤖 LLM-based answer generation using **Gemini (free-tier friendly model)**
-- 🛡️ Safety-aware responses (no financial advice, no hallucination)
-- 🔄 Modular and provider-agnostic design
-- 💬 CLI chat application
-- 🧾 Structured logging
+## Features
 
----
+- PDF document ingestion  
+- Text chunking with overlap  
+- Embeddings using HuggingFace sentence-transformers  
+- Persistent vector storage using ChromaDB  
+- Semantic similarity search (retriever)  
+- LLM-based answer generation using Gemini (free-tier friendly model)  
+- Safety-aware responses (no hallucination, no financial advice)  
+- Modular project architecture  
+- CLI-based chat application  
+- Structured logging  
 
-## 🧠 High-Level Architecture
+## Architecture
 
-User
-↓
-CLI Chat App
-↓
-RAG Pipeline
-↓
-Retriever (Vector DB)
-↓
-Relevant Context
-↓
-LLM (Gemini Flash Lite)
-↓
-Grounded Answer
+User Query → CLI Chat App → RAG Pipeline → Retriever (Vector DB) → Relevant Context → LLM (Gemini Flash Lite) → Grounded Answer
 
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 rag-financial-assistant/
-│
 ├── src/
-│ ├── ingestion/ # PDF loading
-│ ├── indexing/ # Chunking, embeddings, vector store creation
-│ ├── retrieval/ # Semantic retriever
-│ ├── llm/ # LLM answer generation logic
-│ ├── ragpipeline/ # RAG orchestration layer
-│ ├── app/ # CLI chat application
-│ ├── prompts/ # System prompt
-│ └── utils/ # Logging utilities
-│
-├── embeddings/ # Persistent vector database files
+│   ├── ingestion/          # PDF loading
+│   ├── indexing/           # Chunking, embeddings, vector store creation
+│   ├── retrieval/          # Semantic retriever
+│   ├── llm/                # LLM answer generation
+│   ├── ragpipeline/        # RAG orchestration logic
+│   ├── app/                # CLI chat application
+│   ├── prompts/            # System prompt
+│   └── utils/              # Logging utilities
+├── embeddings/             # Persistent vector database
 ├── requirements.txt
 └── README.md
 
+## Tech Stack
 
----
+- Python 3.13  
+- LangChain  
+- ChromaDB  
+- Sentence-Transformers  
+- Google Gemini API (free-tier model)  
+- Git & GitHub  
 
-## ⚙️ Tech Stack
+## Setup
 
-- **Python 3.13**
-- **LangChain**
-- **ChromaDB**
-- **Sentence-Transformers**
-- **Google Gemini API (free-tier model)**
-- **Git & GitHub**
+Clone the repository:
 
----
-
-## 🛠️ Setup Instructions
-
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/your-username/rag-financial-assistant.git
+git clone https://github.com/your-username/rag-financial-assistant.git  
 cd rag-financial-assistant
-2️⃣ Create & activate virtual environment
-python -m venv .venv
+
+Create and activate a virtual environment:
+
+python -m venv .venv  
 source .venv/bin/activate
-3️⃣ Install dependencies
+
+Install dependencies:
+
 pip install -r requirements.txt
-4️⃣ Set environment variables
-export GOOGLE_API_KEY="your_gemini_api_key"
+
+Set environment variables:
+
+export GOOGLE_API_KEY="your_gemini_api_key"  
 export PYTHONWARNINGS=ignore
-📄 Document Ingestion & Indexing
+
+## Document Ingestion and Indexing
+
 Place PDF files in the ingestion directory and run:
 
-python -m src.ingestion.load_documents
+python -m src.ingestion.load_documents  
 python -m src.indexing.build_vectorstore
-This process:
 
-loads documents
+This loads documents, creates chunks, generates embeddings, and stores them in the vector database.
 
-chunks text
+## Run the Chat Application
 
-generates embeddings
-
-stores vectors persistently
-
-▶️ Run the Chat Application
 python -m src.app.chat
-Example interaction:
 
-💬 RAG Financial Assistant
-You: What is a mutual fund?
-Assistant: A mutual fund is an investment vehicle that pools money from investors...
-Type exit or quit to stop.
+Example:
 
-🛡️ Safety & Ethics
-The assistant does not give personalized financial advice
+You: What is a mutual fund?  
+Assistant: A mutual fund is an investment vehicle that pools money from multiple investors...
 
-Responses are strictly based on retrieved document context
+Type `exit` or `quit` to stop the chat.
 
-If information is missing, the model explicitly states so
+## Safety and Ethics
 
-Designed for compliance-sensitive financial environments
+- The assistant does not provide personalized financial advice  
+- All answers are grounded in retrieved document context  
+- If information is missing, the system explicitly states so  
+- Designed for compliance-sensitive financial use cases  
 
-🧪 Example Behavior
-User Query:
+## Example Behavior
 
-Suggest me mutual fund plan
+Query:  
+Suggest me a mutual fund plan
 
-Assistant Response:
+Response:  
+I cannot suggest a specific mutual fund plan. However, the documents explain different types of schemes such as growth funds and income funds.
 
-I cannot suggest a specific mutual fund plan. However, the documents explain different types of schemes such as growth funds and income funds...
+This demonstrates safe, context-based, non-hallucinated behavior.
 
-✔ Context-grounded
-✔ No hallucination
-✔ No advisory violation
+## Interview Highlights
 
+- End-to-end RAG pipeline implementation  
+- Semantic search using vector databases  
+- Hallucination control via system prompts  
+- Modular and provider-agnostic LLM design  
+- Cost-aware model selection  
+- Production-style logging and structure  
 
-This project demonstrates:
+## Author
 
-End-to-end RAG pipeline design
-
-Semantic search using vector databases
-
-Hallucination control using system prompts
-
-Modular LLM integration (provider-agnostic)
-
-Cost-aware model selection
-
-Production-style logging and structure
-
-📌 Future Enhancements
-Source citations for answers
-
-Web or API interface (FastAPI)
-
-Query analytics and evaluation metrics
-
-Improved retrieval tuning
-
-👤 Author
-Suraj Chaudhary
-End-to-end RAG Financial Assistant built for learning, interviews, and real-world applications.
+Suraj Chaudhary  
+RAG Financial Assistant built for interviews, learning, and real-world experimentation.
