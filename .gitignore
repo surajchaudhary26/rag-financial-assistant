@@ -16,3 +16,6 @@ logs/
 # Vector DB storage
 embeddings/vector_store/
 src/debug/
+# Temporary / debug scripts
+test_*.py
+list_*.py
