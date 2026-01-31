@@ -12,3 +12,6 @@ logs/
 
 # OS files
 .DS_Store
+
+# Vector DB storage
+embeddings/vector_store/
