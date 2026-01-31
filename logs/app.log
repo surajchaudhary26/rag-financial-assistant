@@ -1,6 +1,0 @@
-2026-01-31 13:10:24 | INFO | rag_app | Logger is working
-2026-01-31 13:10:24 | WARNING | rag_app | Test warning
-2026-01-31 13:10:24 | ERROR | rag_app | Test error
-2026-01-31 13:33:27 | INFO | rag_app | Loading PDF: mutual_fund_basics.pdf
-2026-01-31 13:33:28 | INFO | rag_app | Loaded 15 pages from mutual_fund_basics.pdf
-2026-01-31 13:33:28 | INFO | rag_app | Total pages loaded: 15
